@@ -1,0 +1,55 @@
+version: '3.3'
+
+services:
+  db: 
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    container_name: mysql_container
+    volumes:
+      - db_data:/var/lib/mysql
+    ports: 
+      - "3306:3306"
+    restart: always
+    env_file:
+      - .\config\db.env
+    networks:
+      - frontend-backend
+
+  nginx:
+    depends_on:
+      - node
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    volumes:
+      - www_volume:/var/www/html
+    ports: 
+      - "80:80"
+    restart: always
+    networks:
+      - frontend-backend
+    
+  node:
+    depends_on:
+      - db
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    volumes:
+      - server_data:/src
+    ports: 
+      - "3000:3000"
+    restart: always
+    env_file:
+    - .\config\node.env
+    networks:
+      - frontend-backend
+
+volumes:
+  db_data: {}
+  www_volume: {}
+  server_data: {}
+
+networks:
+  frontend-backend:

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link href='https://fonts.googleapis.com/css?family=Namdhinggo' rel='stylesheet'>
+
+    <title>Agendamento - Garra de Água</title>
+  </head>
+  <body>
+    <!-- Cabeçalho do site -->
+    <div class="header">
+        <img alt="Logotipo" class ="logo" src="images/eagle_claw.svg">
+        <h1>Associação Kung Fu Garra de Águia Lily Lau Brasil</h1>
+    </div>
+    <div class="name-and-confirm">
+        <div class="names-box">
+            <h2>Selecione seu nome:</h2>
+            <select id="name-filter" class="custom-select" onchange="handleSelectChange(this.value)">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="confirm">
+            <h2>Confirme aqui o seu agendamento:</h2>
+            <button onclick="confirmClasses()">Agendar aulas</button>
+        </div>
+    </div>
+
+    <!-- Calendário semanal de agendamento -->
+    <div class="calendar">
+        <h2>Agenda de horários</h2>
+        <p id="teste">Selecione os horários que deseja agendar. Os nomes dos professores se encontram em cada aula.</p>
+        <div class="week">
+            <div class="info">
+                <h3>Horários</h3>
+                    <p>9:30 - 11:00</p>
+                    <p>11:00 - 12:30</p>
+                    <p>17:30 - 19:30</p>
+                    <p>19:00 - 20:30</p>
+            </div>
+            <div class="day">
+                <h4>Segunda-feira</h4>
+                <div class="aula">
+                    <input type="checkbox" class="select_class" id="monday_9_30" onchange="handleCheckboxChange(this)">
+                    <h5>Vinnicius  <br> - </h5>
+                    <div class="students class_monday_9_30"></div>
+                </div>
+                <div class="no-class"></div>
+                <div class="no-class"></div>
+                <div class="aula">
+                    <input type="checkbox" class="select_class"  id="monday_19_00" onchange="handleCheckboxChange(this)">
+                    <h5>Tiago  <br> - </h5>
+                    <div class="students class_monday_19_00"></div>
+                </div>
+            </div>
+            <div class="day">
+                <h4>Terça-feira</h4>
+                <div class="aula">
+                    <input type="checkbox" class="select_class" id="tuesday_9_30" onchange="handleCheckboxChange(this)">
+                    <h5>Ygor  <br> - </h5>
+                    <div class="students class_tuesday_9_30"></div>
+                </div>
+            </div>
+            <div class="day">
+                <h4>Quarta-feira</h4>
+                <div class="aula">
+                    <input type="checkbox" class="select_class" id="wednesday_9_30" onchange="handleCheckboxChange(this)">
+                    <h5>Vinnicius  <br> - </h5>
+                    <div class="students class_wednesday_9_30"></div>
+                </div>
+                <div class="no-class"></div>
+                <div class="no-class"></div>
+                <div class="aula">
+                    <input type="checkbox" class="select_class" id="wednesday_19_00" onchange="handleCheckboxChange(this)">
+                    <h5>Diogo  <br> - </h5>
+                    <div class="students class_wednesday_19_00"></div>
+                </div>
+            </div>
+            <div class="day">
+                <h4>Quinta-feira</h4>
+            </div>
+            <div class="day">
+                <h4>Sexta-feira</h4>
+                <div class="aula">
+                    <input type="checkbox" class="select_class" id="friday_9_30" onchange="handleCheckboxChange(this)">
+                    <h5>Sebastião <br> - </h5>
+                    <div class="students class_friday_9_30"></div>
+                </div>
+                <div class="no-class"></div>
+                <div class="aula">
+                    <input type="checkbox" class="select_class" id="friday_17_30" onchange="handleCheckboxChange(this)">
+                    <h5>Tiago/Diogo  <br> - </h5>
+                    <div class="students class_friday_17_30"></div>
+                </div>
+                <div class="aula">
+                    <input type="checkbox" class="select_class" id="friday_19_00" onchange="handleCheckboxChange(this)">
+                    <h5>Tiago/Diogo  <br> - </h5>
+                    <div class="students class_friday_19_00"></div>
+                </div>
+            </div>
+            <div class="day">
+                <h4>Sábado</h4>
+                <div class="aula">
+                    <input type="checkbox" class="select_class" id="saturday_9_30" onchange="handleCheckboxChange(this)">
+                    <h5>Vinnicius  <br> - </h5>
+                    <div class="students class_saturday_9_30"></div>
+                </div>
+                <div class="aula">
+                    <input type="checkbox" class="select_class" id="saturday_11_00" onchange="handleCheckboxChange(this)">
+                    <h5>Vinnicius</h5>
+                    <h5>-</h5>
+                    <div class="students class_saturday_11_00"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé do site -->
+    <div class="bottom">
+        <p>Associação Kung Fu Garra de Águia Brasil - 2024</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+
+  </body>
+</html>

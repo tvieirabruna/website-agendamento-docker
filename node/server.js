@@ -1,0 +1,241 @@
+const express = require('express');
+const mysql = require('mysql');
+const cors = require('cors');
+
+const app = new express();
+app.use(cors());
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// MySQL connection
+const connection = mysql.createConnection({
+    host: 'mysql_container',
+    user: 'root',
+    password: '',
+    database: 'kungfu_classroom'
+})
+
+// Route to fetch data from MySQL
+app.get('/', (req, res) => {
+    connection.query('SELECT name FROM students', (err, results) => {
+        if (err) {
+            res.send('MySQL connection error.');
+        }
+
+        res.json(results);
+    })
+})
+
+// Route to fetch data from MySQL from monday_9_30 column
+app.get('/monday_9_30', (req, res) => {
+  // Execute SQL query to select student names where monday_9_30 column is true
+  connection.query('SELECT student_name FROM classes WHERE monday_9_30 = 1', (err, results) => {
+      if (err) {
+          res.status(500).send('MySQL connection error.');
+          return;
+      }
+
+      // Send the student names as JSON response
+      res.json(results);
+  });
+});
+
+// Route to fetch data from MySQL from monday_19_00 column
+app.get('/monday_19_00', (req, res) => {
+  // Execute SQL query to select student names where monday_19_00 column is true
+  connection.query('SELECT student_name FROM classes WHERE monday_19_00 = 1', (err, results) => {
+      if (err) {
+          res.status(500).send('MySQL connection error.');
+          return;
+      }
+
+      // Send the student names as JSON response
+      res.json(results);
+  });
+});
+
+// Route to fetch data from MySQL from tuesday_9_30 column
+app.get('/tuesday_9_30', (req, res) => {
+  // Execute SQL query to select student names where tuesday_9_30 column is true
+  connection.query('SELECT student_name FROM classes WHERE tuesday_9_30 = 1', (err, results) => {
+      if (err) {
+          res.status(500).send('MySQL connection error.');
+          return;
+      }
+
+      // Send the student names as JSON response
+      res.json(results);
+  });
+});
+
+// Route to fetch data from MySQL from wednesday_9_30 column
+app.get('/wednesday_9_30', (req, res) => {
+  // Execute SQL query to select student names where wednesday_9_30 column is true
+  connection.query('SELECT student_name FROM classes WHERE wednesday_9_30 = 1', (err, results) => {
+      if (err) {
+          res.status(500).send('MySQL connection error.');
+          return;
+      }
+
+      // Send the student names as JSON response
+      res.json(results);
+  });
+});
+
+// Route to fetch data from MySQL from wednesday_19_00 column
+app.get('/wednesday_19_00', (req, res) => {
+  // Execute SQL query to select student names where wednesday_19_00 column is true
+  connection.query('SELECT student_name FROM classes WHERE wednesday_19_00 = 1', (err, results) => {
+      if (err) {
+          res.status(500).send('MySQL connection error.');
+          return;
+      }
+
+      // Send the student names as JSON response
+      res.json(results);
+  });
+});
+
+// Route to fetch data from MySQL from wednesday_19_00 column
+app.get('/wednesday_19_00', (req, res) => {
+  // Execute SQL query to select student names where wednesday_19_00 column is true
+  connection.query('SELECT student_name FROM classes WHERE wednesday_19_00 = 1', (err, results) => {
+      if (err) {
+          res.status(500).send('MySQL connection error.');
+          return;
+      }
+
+      // Send the student names as JSON response
+      res.json(results);
+  });
+});
+
+// Route to fetch data from MySQL from friday_9_30 column
+app.get('/friday_9_30', (req, res) => {
+  // Execute SQL query to select student names where friday_9_30 column is true
+  connection.query('SELECT student_name FROM classes WHERE friday_9_30 = 1', (err, results) => {
+      if (err) {
+          res.status(500).send('MySQL connection error.');
+          return;
+      }
+
+      // Send the student names as JSON response
+      res.json(results);
+  });
+});
+
+// Route to fetch data from MySQL from friday_17_30 column
+app.get('/friday_17_30', (req, res) => {
+  // Execute SQL query to select student names where friday_17_30 column is true
+  connection.query('SELECT student_name FROM classes WHERE friday_17_30 = 1', (err, results) => {
+      if (err) {
+          res.status(500).send('MySQL connection error.');
+          return;
+      }
+
+      // Send the student names as JSON response
+      res.json(results);
+  });
+});
+
+// Route to fetch data from MySQL from friday_19_00 column
+app.get('/friday_19_00', (req, res) => {
+  // Execute SQL query to select student names where friday_19_00 column is true
+  connection.query('SELECT student_name FROM classes WHERE friday_19_00 = 1', (err, results) => {
+      if (err) {
+          res.status(500).send('MySQL connection error.');
+          return;
+      }
+
+      // Send the student names as JSON response
+      res.json(results);
+  });
+});
+
+// Route to fetch data from MySQL from saturday_9_30 column
+app.get('/saturday_9_30', (req, res) => {
+  // Execute SQL query to select student names where saturday_9_30 column is true
+  connection.query('SELECT student_name FROM classes WHERE saturday_9_30 = 1', (err, results) => {
+      if (err) {
+          res.status(500).send('MySQL connection error.');
+          return;
+      }
+
+      // Send the student names as JSON response
+      res.json(results);
+  });
+});
+
+// Route to fetch data from MySQL from saturday_11_00 column
+app.get('/saturday_11_00', (req, res) => {
+  // Execute SQL query to select student names where saturday_11_00 column is true
+  connection.query('SELECT student_name FROM classes WHERE saturday_11_00 = 1', (err, results) => {
+      if (err) {
+          res.status(500).send('MySQL connection error.');
+          return;
+      }
+
+      // Send the student names as JSON response
+      res.json(results);
+  });
+});
+
+// Route to insert a host
+app.post('/inserthost', async (req, res) => {
+  try {
+    const response = await fetch('https://randomuser.me/api');
+    const data = await response.json();
+
+    // Extract the name from the API
+    const name = data.results[0].name.first;
+
+    // Execute MySQL query to insert the username
+    connection.query('INSERT INTO students (name) VALUES (?)', [name], (error, results, fields) => {
+      if (error) {
+        console.error('Error inserting host:', error);
+        res.status(500).send('Internal Server Error');
+        return;
+      }
+      console.log('Host inserted:', name);
+      res.send(name); // Return the inserted username
+    });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// Route to handle saving data
+app.post('/saveData', (req, res) => {
+  const { student, classes } = req.body;
+
+  // Construct the SQL query
+  let query = 'INSERT INTO classes (student_name, ';
+  const columns = Object.keys(classes).join(', ');
+  const values = Object.values(classes).map(value => value ? 1 : 0);
+
+  // Add column names to the query
+  query += `${columns})`;
+
+  // Add placeholders for values
+  query += ` VALUES (?, ${Array(values.length).fill('?').join(', ')})`;
+
+  // Execute the query
+  const params = [student, ...values];
+
+  connection.query(query, params, (error, results, fields) => {
+        if (error) {
+            console.error('Error inserting data:', error);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        res.sendStatus(200); // Send a success response
+    });
+});
+
+  // Start the server
+  const port = process.env.PORT || 3000;  
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}.`);
+})
