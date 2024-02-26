@@ -1,30 +1,60 @@
-<img src="https://github.com/tvieirabruna/docker-project/blob/main/readme-website-gif.gif" alt="Alt Text" width="1200">
+<img src="https://github.com/tvieirabruna/docker-project/blob/main/readme-website.gif" alt="Alt Text" width="1200">
 
-# Site de agendamento - HTML | CSS | Javascript | Node | MySQL | Docker
+# :globe_with_meridians: Webite de agendamento - HTML | CSS | Javascript | Node | MySQL | Docker
+Website de marcação de aulas dos alunos da academia de Kung Fu Garra de Águia Lily Lau Brasil.
 
-## Instalação com Docker-Compose
-Este repositório contém os arquivos necessários para fazer o deploy do NGINX, Node e MySQL utilizando o Docker. Caso já tenha o Docker instalado, rode o seguinte comando:
+### ⚙️ Ajustes e melhorias
+O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
+- [ ] Desabilitar a autenticação no MySQL por senha vazia para uma segurança mais robusta;
+- [ ] Conta de usuário para cada aluno;
+- [ ] Possibilidade de reagendamento e exclusão das aulas;
+- [ ] Disparo de e-mail para o instrutor a cada alteração feita na aula por um aluno.
+
+## 💻 Pré-requisitos
+- [Git](https://git-scm.com/downloads)
+- [Docker](https://www.docker.com/products/docker-desktop/)
+  
+Este repositório contém os arquivos necessários para fazer o deploy do NGINX, Node e MySQL utilizando o [Docker](https://www.docker.com/products/docker-desktop/). Com o [Git](https://git-scm.com/downloads) já instalado, clone o repositório no caminho onde deseja instalar o projeto. Para isso, rode o seguinte comando:
+
+```
+git clone https://github.com/tvieirabruna/website-agendamento-docker
+```
+
+Abra sua IDE de preferência (exemplos: Visual Studio Code, Eclipse, IntelliJ) e, no terminal, mude o caminho para o mesmo endereço do projeto. Com o [Docker](https://www.docker.com/products/docker-desktop/) já instalado, rode o seguinte comando:
 
  ```
  $ docker-compose up
 ```
 
-## Compartilhamento das imagens no Docker Hub
-- [Imagen NGINX](https://hub.docker.com/repository/docker/tvieirabruna/nginx-image-kungfu-classroom/general)
-- [Imagem Node](https://hub.docker.com/repository/docker/tvieirabruna/kungfu-classroom-node/general)
-- [Imagem MySQL](https://hub.docker.com/repository/docker/tvieirabruna/kungfu-classroom-mysql/general)
+## :globe_with_meridians: Usando o Website de Agendamento
+Para acessar o Website, abra o seu navegador e, na barra de endereço, digite:
 
-## Construção de cada imagem
-### MySQL
-A imagem oficial do MySQL de versão 5.7 é a imagem base. O arquivo de configuração do banco de dados do MySQL nomeado schema.sql é copiado para dentro da pasta de entrypoint /docker-entrypoint-initdb.d/, construindo o banco de dados com a inicialização da imagem. A porta 330 é exposta e a pasta /backup/ é definida como o volume.
+```
+localhost:80
+```
 
-### Node
-A imagem oficial do Node é a imagem base. O diretório de trabalho é definido como o /src. Os arquivos que se iniciam com package são copiados para dentro de /src. São instaladas as dependências do node, MySQL, Express e CORS. Todos os arquivos restantes são também copiados. A porta 3000 é exposta e o Node e o arquivo server.js são executados ao fazer o deploy do container - entrypoint.
-  
-### NGINX
-A imagem oficial do NGINX é a imagem base. O arquivo de configuração index.html assim como as pastas css, js e images são copiadas para dentro da pasta /usr/share/nginx/html/. A porta 80 é exposta.
-  
-## Banco de dados (MySQL)
-O banco de dados consiste de duas tabelas, uma nomeada students e outra classes. A tabela students, no momento, apenas armazena o nome dos alunos, mas pode ser expandida para armazenar a cor da faixa, informações cadastrais, se é um aluno ativo ou inativo, por exemplo. A tabela classes tem como colunas o nome dos alunos e os horários de cada aula. 
+## :bar_chart: Banco de dados (MySQL)
+O banco de dados consiste de duas tabelas, uma nomeada students e outra classes. A tabela students, no momento, armazena apenas o id nome dos alunos, mas pode ser expandida para armazenar a cor da faixa, informações cadastrais, se é um aluno ativo ou inativo, por exemplo. A tabela classes tem como colunas o nome dos alunos e os horários de cada aula. 
 
+## :rocket: Tecnologias usadas
+ - Frontend:
+     - ![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)
+     - ![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)
+     - ![Javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+    
+- Backend:
+     - ![Node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+     - ![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
 
+- Banco de dados:
+     - ![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
+       
+- DevOps:
+     - ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+     - ![NGINX](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+       
+## :books: Compartilhamento das imagens no Docker Hub
+- Para acessar as imagens utilizadas no projeto, basta acessar o link no [Docker Hub](https://hub.docker.com/repository/docker/tvieirabruna/adatech-project-kungfu-classroom-website/general).
+
+## :scroll: Licença
+Este projeto está licenciado sob a licença [MIT](https://github.com/tvieirabruna/website-agendamento-docker/blob/main/LICENSE).
