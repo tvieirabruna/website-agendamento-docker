@@ -12,7 +12,7 @@ services:
       - "3306:3306"
     restart: always
     env_file:
-      - .\config\db.env
+    - .\config\db.env
     networks:
       - frontend-backend
 
