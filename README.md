@@ -1,6 +1,6 @@
 <img src="https://github.com/tvieirabruna/docker-project/blob/main/readme-website.gif" alt="Alt Text" width="1200">
 
-# :globe_with_meridians: Webite de agendamento - HTML | CSS | Javascript | Node | MySQL | Docker
+# :globe_with_meridians: Website de agendamento - HTML | CSS | Javascript | Node | MySQL | Docker
 Website de marcação de aulas dos alunos da academia de Kung Fu Garra de Águia Lily Lau Brasil.
 
 ### ⚙️ Ajustes e melhorias
