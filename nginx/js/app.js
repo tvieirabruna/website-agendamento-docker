@@ -3,7 +3,7 @@ let selectedStudent;
 const selectedCheckboxes = {};
 
 // Load students name into select
-function load_students_name() {
+function loadStudents() {
     fetch(`http://localhost:3000/`)
     .then(response => {
         if (response.status === 200) {
@@ -41,6 +41,7 @@ function handleCheckboxChange(checkbox) {
     if (checkbox.checked) {
         // Store the checkbox in the selectedCheckboxes object
         selectedCheckboxes[checkbox.id] = true;
+        console.log(selectedCheckboxes)
     } else {
         // If checkbox is unchecked, remove it from selectedCheckboxes object
         delete selectedCheckboxes[checkbox.id];
@@ -61,7 +62,6 @@ function showStudents() {
                 return response.json();
             } else {
                 console.log('ERRO!');
-                return []
             }
         })
 
@@ -69,18 +69,20 @@ function showStudents() {
             if (data.length === 0) {
                 console.log('Sem alunos marcados!');
             } else {
-                const classDiv = document.querySelector(`.class_${element}`);
+                const classDivs = document.querySelectorAll(`.class_${element}`);
 
                 // Loop through the studentNames array and create a paragraph element for each name
                 data.forEach(student => {
-                    // Extract student names from the data array
-                    const studentNames = data.map(student => student.student_name);
+                    classDivs.forEach(classDiv => {
+                        // Extract student names from the data array
+                        const studentNames = data.map(student => student.student_name);
 
-                    // Join student names with "-" separator
-                    const namesString = studentNames.join(' - ');
+                        // Join student names with "-" separator
+                        const namesString = studentNames.join(' - ');
 
-                    // Set the text content of the div to the joined names string
-                    classDiv.innerHTML = namesString;
+                        // Set the text content of the div to the joined names string
+                        classDiv.innerHTML = namesString;
+                    });
                 });
             }
         })
@@ -92,8 +94,20 @@ function confirmClasses() {
     // Construct the data payload
     const data = {
         student: selectedStudent,
-        classes: selectedCheckboxes
+        classes: {}
     };
+
+    // If mobile, exclude "mobile-" from checkboxes id
+    for (let id in selectedCheckboxes) {
+        let modifiedId = id;
+        // Check if the ID contains "mobile-"
+        if (id.includes("mobile-")) {
+            // Remove "mobile-" prefix
+            modifiedId = id.replace("mobile-", "");
+        }
+        // Add the modified checkbox to the data payload
+        data.classes[modifiedId] = true;
+    }
 
     // Send data to backend
     fetch('http://localhost:3000/saveData', {
@@ -118,6 +132,6 @@ function confirmClasses() {
 
 // Feed students name into the page after it loads
 window.onload = () => {
-    load_students_name()
+    loadStudents()
     showStudents()
 }

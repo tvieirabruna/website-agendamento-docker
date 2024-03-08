@@ -10,133 +10,287 @@
 
     <link href='https://fonts.googleapis.com/css?family=Namdhinggo' rel='stylesheet'>
 
-    <title>Agendamento - Garra de Água</title>
+    <title>Agendamento - Garra de Água Lily Lau Brasil</title>
   </head>
   <body>
-    <!-- Cabeçalho do site -->
-    <div class="header">
-        <img alt="Logotipo" class ="logo" src="images/eagle_claw.svg">
-        <h1>Associação Kung Fu Garra de Águia Lily Lau Brasil</h1>
-    </div>
-
-    <!-- Seleção do nome e confirmação do agendamento -->
-    <div class="name-and-confirm">
-        <div class="names-box">
-            <h2>Selecione seu nome:</h2>
-            <select id="name-filter" class="custom-select" onchange="handleSelectChange(this.value)">
-                <option value=""></option>
-            </select>
+    <div class="holder">
+        <!-- Cabeçalho do site -->
+        <div class="header">
+            <img alt="Logotipo" class ="logo" src="images/eagle_claw.svg">
+            <h1>Associação Kung Fu Garra de Águia Lily Lau Brasil</h1>
         </div>
-        <div class="confirm">
+
+        <!-- Seleção do nome e confirmação do agendamento -->
+        <div class="name-and-confirm">
+            <div class="names-box">
+                <h2>Selecione seu nome:</h2>
+                <select id="name-filter" class="custom-select" onchange="handleSelectChange(this.value)">
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="confirm">
+                <h2>Confirme aqui o seu agendamento:</h2>
+                <button onclick="confirmClasses()">Agendar aulas</button>
+            </div>
+        </div>
+
+        <!-- Calendário semanal de agendamento (Mobile) -->
+        <div class="calendar">
+            <h2>Agenda de horários</h2>
+            <p>Selecione os horários que deseja agendar. Os nomes dos professores se encontram em cada aula.</p>
+            <div class="week">
+                <div class="info">
+                    <h3>Horários</h3>
+                        <p>9:30 - 11:00</p>
+                        <p>11:00 - 12:30</p>
+                        <p>17:30 - 19:30</p>
+                        <p>19:00 - 20:30</p>
+                </div>
+
+                <!-- Segunda-feira -->
+                <div class="day">
+                    <h4>Segunda-feira</h4>
+                    <div class="aula">
+                        <input type="checkbox" class="select_class" id="monday_9_30" onchange="handleCheckboxChange(this)">
+                        <h5>Vinnicius  <br> - </h5>
+                        <div class="students class_monday_9_30"></div>
+                    </div>
+                    <div class="no-class"></div>
+                    <div class="no-class"></div>
+                    <div class="aula">
+                        <input type="checkbox" class="select_class"  id="monday_19_00" onchange="handleCheckboxChange(this)">
+                        <h5>Tiago  <br> - </h5>
+                        <div class="students class_monday_19_00"></div>
+                    </div>
+                </div>
+
+                <!-- Terça-feira -->
+                <div class="day">
+                    <h4>Terça-feira</h4>
+                    <div class="aula">
+                        <input type="checkbox" class="select_class" id="tuesday_9_30" onchange="handleCheckboxChange(this)">
+                        <h5>Ygor  <br> - </h5>
+                        <div class="students class_tuesday_9_30"></div>
+                    </div>
+                </div>
+
+                <!-- Quarta-feira -->
+                <div class="day">
+                    <h4>Quarta-feira</h4>
+                    <div class="aula">
+                        <input type="checkbox" class="select_class" id="wednesday_9_30" onchange="handleCheckboxChange(this)">
+                        <h5>Vinnicius  <br> - </h5>
+                        <div class="students class_wednesday_9_30"></div>
+                    </div>
+                    <div class="no-class"></div>
+                    <div class="no-class"></div>
+                    <div class="aula">
+                        <input type="checkbox" class="select_class" id="wednesday_19_00" onchange="handleCheckboxChange(this)">
+                        <h5>Diogo  <br> - </h5>
+                        <div class="students class_wednesday_19_00"></div>
+                    </div>
+                </div>
+
+                <!-- Quinta-feira -->
+                <div class="day">
+                    <h4>Quinta-feira</h4>
+                </div>
+
+                <!-- Sexta-feira -->
+                <div class="day">
+                    <h4>Sexta-feira</h4>
+                    <div class="aula">
+                        <input type="checkbox" class="select_class" id="friday_9_30" onchange="handleCheckboxChange(this)">
+                        <h5>Sebastião <br> - </h5>
+                        <div class="students class_friday_9_30"></div>
+                    </div>
+                    <div class="no-class"></div>
+                    <div class="aula">
+                        <input type="checkbox" class="select_class" id="friday_17_30" onchange="handleCheckboxChange(this)">
+                        <h5>Tiago/Diogo  <br> - </h5>
+                        <div class="students class_friday_17_30"></div>
+                    </div>
+                    <div class="aula">
+                        <input type="checkbox" class="select_class" id="friday_19_00" onchange="handleCheckboxChange(this)">
+                        <h5>Tiago/Diogo  <br> - </h5>
+                        <div class="students class_friday_19_00"></div>
+                    </div>
+                </div>
+
+                <!-- Sábado -->
+                <div class="day">
+                    <h4>Sábado</h4>
+                    <div class="aula">
+                        <input type="checkbox" class="select_class" id="saturday_9_30" onchange="handleCheckboxChange(this)">
+                        <h5>Vinnicius  <br> - </h5>
+                        <div class="students class_saturday_9_30"></div>
+                    </div>
+                    <div class="aula">
+                        <input type="checkbox" class="select_class" id="saturday_11_00" onchange="handleCheckboxChange(this)">
+                        <h5>Vinnicius</h5>
+                        <h5>-</h5>
+                        <div class="students class_saturday_11_00"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-calendar">
+            <h2>Agenda de horários</h2>
+            <p>Selecione os horários que deseja agendar. <br> Os nomes dos professores se encontram em cada aula.</p>
+            <div class="week">
+
+                <!-- Segunda-feira 9:30-->
+                <div class="day">
+                    <div class="mobile-info">
+                        <h4>Segunda-feira</h4>
+                        <p>9:30 - 11:00</p>
+                        <input type="checkbox" class="select_class" id="mobile-monday_9_30" onchange="handleCheckboxChange(this)">
+                    </div>
+                    <div class="aula">
+                        <h5>Vinnicius</h5>
+                        <h6> - </h6>
+                        <div class="students class_monday_9_30"></div>
+                    </div>
+                </div>
+
+                <!-- Segunda-feira 19:00-->
+                <div class="day">
+                    <div class="mobile-info">
+                        <h4>Segunda-feira</h4>
+                        <p>19:00 - 20:30</p>
+                        <input type="checkbox" class="select_class" id="mobile-monday_19_00" onchange="handleCheckboxChange(this)">
+                    </div>
+                    <div class="aula">
+                        <h5>Thiago</h5>
+                        <h6> - </h6>
+                        <div class="students class_monday_19_00"></div>
+                    </div>
+                </div>
+
+                <!-- Terça-feira 9:30-->
+                <div class="day">
+                    <div class="mobile-info">
+                        <h4>Terça-feira</h4>
+                        <p>9:30 - 11:00</p>
+                        <input type="checkbox" class="select_class" id="mobile-tuesday_9_30" onchange="handleCheckboxChange(this)">
+                    </div>
+                    <div class="aula">
+                        <h5>Ygor</h5>
+                        <h6> - </h6>
+                        <div class="students class_tuesday_9_30"></div>
+                    </div>
+                </div>
+
+                <!-- Quarta-feira 9:30-->
+                <div class="day">
+                    <div class="mobile-info">
+                        <h4>Quarta-feira</h4>
+                        <p>9:30 - 11:00</p>
+                        <input type="checkbox" class="select_class" id="mobile-wednesday_9_30" onchange="handleCheckboxChange(this)">
+                    </div>
+                    <div class="aula">
+                        <h5>Vinnicius</h5>
+                        <h6> - </h6>
+                        <div class="students class_wednesday_9_30"></div>
+                    </div>
+                </div>
+
+                 <!-- Quarta-feira 19:00-->
+                 <div class="day">
+                    <div class="mobile-info">
+                        <h4>Quarta-feira</h4>
+                        <p>19:00 - 20:30</p>
+                        <input type="checkbox" class="select_class" id="mobile-wednesday_19_00" onchange="handleCheckboxChange(this)">
+                    </div>
+                    <div class="aula">
+                        <h5>Diogo</h5>
+                        <h6>-</h6>
+                        <div class="students class_wednesday_19_00"></div>
+                    </div>
+                </div>
+
+                <!-- Sexta-feira 9:30-->
+                <div class="day">
+                    <div class="mobile-info">
+                        <h4>Sexta-feira</h4>
+                        <p>9:30 - 11:00</p>
+                        <input type="checkbox" class="select_class" id="mobile-friday_9_30" onchange="handleCheckboxChange(this)">
+                    </div>
+                    <div class="aula">
+                        <h5>Sebastião</h5>
+                        <h6> - </h6>
+                        <div class="students class_friday_9_30"></div>
+                    </div>
+                </div>
+
+                <!-- Sexta-feira 17:30-->
+                <div class="day">
+                    <div class="mobile-info">
+                        <h4>Sexta-feira</h4>
+                        <p>17:30 - 19:00</p>
+                        <input type="checkbox" class="select_class" id="mobile-friday_17_30" onchange="handleCheckboxChange(this)">
+                    </div>
+                    <div class="aula">
+                        <h5>Tiago / Diogo</h5>
+                        <h6> - </h6>
+                        <div class="students class_friday_17_30"></div>
+                    </div>
+                </div>
+
+                <!-- Sexta-feira 19:00-->
+                <div class="day">
+                    <div class="mobile-info">
+                        <h4>Sexta-feira</h4>
+                        <p>19:00 - 20:30</p>
+                        <input type="checkbox" class="select_class" id="mobile-friday_19_00" onchange="handleCheckboxChange(this)">
+                    </div>
+                    <div class="aula">
+                        <h5>Tiago / Diogo</h5>
+                        <h6> - </h6>
+                        <div class="students class_friday_19_00"></div>
+                    </div>
+                </div>
+
+                <!-- Sábado 9:30-->
+                <div class="day">
+                    <div class="mobile-info">
+                        <h4>Sábado</h4>
+                        <p>9:30 - 11:00</p>
+                        <input type="checkbox" class="select_class" id="mobile-saturday_9_30" onchange="handleCheckboxChange(this)">
+                    </div>
+                    <div class="aula">
+                        <h5>Vinnicius</h5>
+                        <h6> - </h6>
+                        <div class="students class_saturday_9_30"></div>
+                    </div>
+                </div>
+
+                <!-- Sábado 11:00-->
+                <div class="day">
+                    <div class="mobile-info">
+                        <h4>Sábado</h4>
+                        <p>11:00 - 12:30</p>
+                        <input type="checkbox" class="select_class" id="mobile-saturday_11_00" onchange="handleCheckboxChange(this)">
+                    </div>
+                    <div class="aula">
+                        <h5>Vinnicius</h5>
+                        <h6> - </h6>
+                        <div class="students class_saturday_11_00"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-confirm">
             <h2>Confirme aqui o seu agendamento:</h2>
             <button onclick="confirmClasses()">Agendar aulas</button>
         </div>
-    </div>
 
-    <!-- Calendário semanal de agendamento -->
-    <div class="calendar">
-        <h2>Agenda de horários</h2>
-        <p id="teste">Selecione os horários que deseja agendar. Os nomes dos professores se encontram em cada aula.</p>
-        <div class="week">
-            <div class="info">
-                <h3>Horários</h3>
-                    <p>9:30 - 11:00</p>
-                    <p>11:00 - 12:30</p>
-                    <p>17:30 - 19:30</p>
-                    <p>19:00 - 20:30</p>
-            </div>
-
-            <!-- Segunda-feira -->
-            <div class="day">
-                <h4>Segunda-feira</h4>
-                <div class="aula">
-                    <input type="checkbox" class="select_class" id="monday_9_30" onchange="handleCheckboxChange(this)">
-                    <h5>Vinnicius  <br> - </h5>
-                    <div class="students class_monday_9_30"></div>
-                </div>
-                <div class="no-class"></div>
-                <div class="no-class"></div>
-                <div class="aula">
-                    <input type="checkbox" class="select_class"  id="monday_19_00" onchange="handleCheckboxChange(this)">
-                    <h5>Tiago  <br> - </h5>
-                    <div class="students class_monday_19_00"></div>
-                </div>
-            </div>
-
-            <!-- Terça-feira -->
-            <div class="day">
-                <h4>Terça-feira</h4>
-                <div class="aula">
-                    <input type="checkbox" class="select_class" id="tuesday_9_30" onchange="handleCheckboxChange(this)">
-                    <h5>Ygor  <br> - </h5>
-                    <div class="students class_tuesday_9_30"></div>
-                </div>
-            </div>
-
-            <!-- Quarta-feira -->
-            <div class="day">
-                <h4>Quarta-feira</h4>
-                <div class="aula">
-                    <input type="checkbox" class="select_class" id="wednesday_9_30" onchange="handleCheckboxChange(this)">
-                    <h5>Vinnicius  <br> - </h5>
-                    <div class="students class_wednesday_9_30"></div>
-                </div>
-                <div class="no-class"></div>
-                <div class="no-class"></div>
-                <div class="aula">
-                    <input type="checkbox" class="select_class" id="wednesday_19_00" onchange="handleCheckboxChange(this)">
-                    <h5>Diogo  <br> - </h5>
-                    <div class="students class_wednesday_19_00"></div>
-                </div>
-            </div>
-
-            <!-- Quinta-feira -->
-            <div class="day">
-                <h4>Quinta-feira</h4>
-            </div>
-
-            <!-- Sexta-feira -->
-            <div class="day">
-                <h4>Sexta-feira</h4>
-                <div class="aula">
-                    <input type="checkbox" class="select_class" id="friday_9_30" onchange="handleCheckboxChange(this)">
-                    <h5>Sebastião <br> - </h5>
-                    <div class="students class_friday_9_30"></div>
-                </div>
-                <div class="no-class"></div>
-                <div class="aula">
-                    <input type="checkbox" class="select_class" id="friday_17_30" onchange="handleCheckboxChange(this)">
-                    <h5>Tiago/Diogo  <br> - </h5>
-                    <div class="students class_friday_17_30"></div>
-                </div>
-                <div class="aula">
-                    <input type="checkbox" class="select_class" id="friday_19_00" onchange="handleCheckboxChange(this)">
-                    <h5>Tiago/Diogo  <br> - </h5>
-                    <div class="students class_friday_19_00"></div>
-                </div>
-            </div>
-
-            <!-- Sábado -->
-            <div class="day">
-                <h4>Sábado</h4>
-                <div class="aula">
-                    <input type="checkbox" class="select_class" id="saturday_9_30" onchange="handleCheckboxChange(this)">
-                    <h5>Vinnicius  <br> - </h5>
-                    <div class="students class_saturday_9_30"></div>
-                </div>
-                <div class="aula">
-                    <input type="checkbox" class="select_class" id="saturday_11_00" onchange="handleCheckboxChange(this)">
-                    <h5>Vinnicius</h5>
-                    <h5>-</h5>
-                    <div class="students class_saturday_11_00"></div>
-                </div>
-            </div>
+        <!-- Rodapé do site -->
+        <div class="bottom">
+            <p>Associação Kung Fu Garra de Águia Brasil - 2024</p>
         </div>
-    </div>
-
-    <!-- Rodapé do site -->
-    <div class="bottom">
-        <p>Associação Kung Fu Garra de Águia Brasil - 2024</p>
     </div>
 
     <!-- Scripts -->

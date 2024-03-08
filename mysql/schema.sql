@@ -36,8 +36,13 @@ CREATE TABLE `classes` (
 	`saturday_11_00` TINYINT(3) NULL DEFAULT NULL,
 	PRIMARY KEY (`id`) USING BTREE,
 	INDEX `fk_student_name` (`student_name`) USING BTREE,
-	CONSTRAINT `fk_student_name` FOREIGN KEY (`student_name`) REFERENCES `students` (`name`) ON UPDATE RESTRICT ON DELETE RESTRICT
+	CONSTRAINT `fk_student_name` FOREIGN KEY (`student_name`) REFERENCES `students` (`name`) ON UPDATE RESTRICT ON DELETE RESTRICT,
+	UNIQUE (`student_name`)
 );
+
+INSERT INTO classes (student_id, student_name)
+SELECT id, name
+FROM students;
 
 -- Create the trigger to set student_id before insert
 DELIMITER //

@@ -181,58 +181,31 @@ app.get('/saturday_11_00', (req, res) => {
   });
 });
 
-// Route to insert a host
-app.post('/inserthost', async (req, res) => {
-  try {
-    const response = await fetch('https://randomuser.me/api');
-    const data = await response.json();
-
-    // Extract the name from the API
-    const name = data.results[0].name.first;
-
-    // Execute MySQL query to insert the username
-    connection.query('INSERT INTO students (name) VALUES (?)', [name], (error, results, fields) => {
-      if (error) {
-        console.error('Error inserting host:', error);
-        res.status(500).send('Internal Server Error');
-        return;
-      }
-      console.log('Host inserted:', name);
-      res.send(name); // Return the inserted username
-    });
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
 // Route to handle saving data
 app.post('/saveData', (req, res) => {
   const { student, classes } = req.body;
 
   // Construct the SQL query
-  let query = 'INSERT INTO classes (student_name, ';
-  const columns = Object.keys(classes).join(', ');
-  const values = Object.values(classes).map(value => value ? 1 : 0);
+  let query = 'UPDATE classes SET ';
+  const columns = Object.keys(classes);
+  const setColumns = columns.map(column => `${column} = ?`).join(', ');
 
   // Add column names to the query
-  query += `${columns})`;
-
-  // Add placeholders for values
-  query += ` VALUES (?, ${Array(values.length).fill('?').join(', ')})`;
+  query += `${setColumns} WHERE student_name = ?`;
 
   // Execute the query
-  const params = [student, ...values];
+  const values = [...Object.values(classes).map(value => value ? 1 : 0), student];
 
-  connection.query(query, params, (error, results, fields) => {
-        if (error) {
-            console.error('Error inserting data:', error);
-            res.status(500).send('Internal Server Error');
-            return;
-        }
-        res.sendStatus(200); // Send a success response
-    });
+  connection.query(query, values, (error, results, fields) => {
+    if (error) {
+      console.error('Error updating data:', error);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+    res.sendStatus(200); // Send a success response
+  });
 });
+
 
   // Start the server
   const port = process.env.PORT || 3000;  
